@@ -1,0 +1,44 @@
+# Decap CMS configuration for Sunshine Peace
+#
+# BEFORE DEPLOYING: replace `owner/repo` on the next line with your
+# actual GitHub repo (e.g. "frederik/sunshine-peace").
+
+backend:
+  name: git-gateway
+  branch: main              # branch the CMS commits to
+
+# Where uploaded photos land in the repo
+media_folder: "photos"
+public_folder: "/photos"
+
+# Language of the admin UI
+locale: "de"
+
+# Single-file "photos.json" holds every photo in a list
+collections:
+  - name: "gallery"
+    label: "Foto-Galerie"
+    files:
+      - name: "photos"
+        label: "Alle Fotos"
+        file: "photos.json"
+        format: "json"
+        description: >
+          Hier kannst du alle Fotos der Galerie bearbeiten: hinzufügen, entfernen,
+          umsortieren, Titel ändern. Änderungen werden in Git gespeichert und sind
+          nach ca. 1-2 Minuten auf der Website sichtbar.
+        fields:
+          - label: "Fotos"
+            name: "photos"
+            widget: "list"
+            summary: "{{fields.title_de}} ({{fields.category}})"
+            fields:
+              - { label: "Titel (Deutsch)",  name: "title_de", widget: "string" }
+              - { label: "Titel (日本語)",    name: "title_ja", widget: "string", required: false }
+              - label: "Kategorie"
+                name: "category"
+                widget: "select"
+                options: ["Natur", "Stadt", "Drohne", "Editorial"]
+                default: "Natur"
+              - { label: "Bild",             name: "image",    widget: "image" }
+              - { label: "Aufnahmedatum",    name: "date",     widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: false }

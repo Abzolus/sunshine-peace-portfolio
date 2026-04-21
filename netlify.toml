@@ -1,0 +1,40 @@
+# Netlify-Konfiguration für sunshine-peace
+#
+# Das Repo-Wurzelverzeichnis enthält die fertige Website (statisches HTML).
+# Kein Build-Tool nötig — Netlify lädt die Dateien einfach direkt hoch.
+
+[build]
+  publish = "."
+  # Kein Build-Schritt:
+  command = ""
+
+# Schönere URL für das CMS — /admin öffnet /admin/index.html
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+# Cache-Header: HTML + photos.json immer frisch laden (sonst sieht der
+# Fotograf seine frisch hochgeladenen Fotos nicht sofort).
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/photos.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Bilder selbst dürfen ein Jahr im Cache bleiben — Dateinamen ändern sich
+# bei jedem Upload sowieso (Decap hängt üblicherweise nichts an, aber der
+# Fotograf soll ruhig gleiche Namen vermeiden).
+[[headers]]
+  for = "/photos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
