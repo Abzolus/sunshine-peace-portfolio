@@ -946,5 +946,20 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
+
+<!-- Netlify Identity: fängt ?invite_token / #invite_token aus Einladungs-Links ab
+     und leitet nach dem Login auf /admin/ um. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    netlifyIdentity.on("init", user => {
+      if (!user) {
+        netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
