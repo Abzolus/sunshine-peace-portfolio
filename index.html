@@ -14,9 +14,9 @@
   <meta property="og:title" content="Sunshine Peace · Kohei Matsumoto Fotografie"/>
   <meta property="og:description" content="Freier Fotograf aus Goldiwil bei Thun. Landschaft, Stadt, Drohne — Aufnahmen aus dem Berner Oberland und der ganzen Welt."/>
   <meta property="og:url" content="https://sunshine-peace.com/"/>
-  <meta property="og:image" content="https://sunshine-peace.com/assets/heroes/hero-matterhorn.jpg"/>
+  <meta property="og:image" content="https://sunshine-peace.com/assets/og-image.jpg"/>
   <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="793"/>
+  <meta property="og:image:height" content="630"/>
   <meta property="og:image:alt" content="Matterhorn mit Riffelsee, Schweizer Alpen"/>
   <meta property="og:locale" content="de_CH"/>
   <meta property="og:locale:alternate" content="ja_JP"/>
@@ -25,7 +25,7 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Sunshine Peace · Kohei Matsumoto Fotografie"/>
   <meta name="twitter:description" content="Freier Fotograf aus Goldiwil bei Thun. Landschaft, Stadt, Drohne, Editorial."/>
-  <meta name="twitter:image" content="https://sunshine-peace.com/assets/heroes/hero-matterhorn.jpg"/>
+  <meta name="twitter:image" content="https://sunshine-peace.com/assets/og-image.jpg"/>
   <meta name="twitter:image:alt" content="Matterhorn mit Riffelsee, Schweizer Alpen"/>
 
   <!-- Favicon (nutzt das Logo, falls Browser PNG akzeptieren — sonst stillen Fallback) -->
@@ -776,17 +776,17 @@
 <!-- Hero -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <img class="hero-img" id="heroImg" src="assets/heroes/hero-matterhorn.jpg" alt="Matterhorn" data-hero-key="matterhorn" decoding="async"/>
+  <img class="hero-img" id="heroImg" src="assets/heroes/hero-matterhorn.webp" alt="Matterhorn" data-hero-key="matterhorn" decoding="async"/>
   <script>
     /* Hero-Rotation: zufälliges Bild beim Seitenaufruf.
        Läuft inline, damit der Tausch passiert, bevor der Browser mit dem
        Herunterladen des Default-Bildes fertig ist — Default wird dann abgebrochen. */
     (function(){
       var heroes = [
-        { key: 'matterhorn',      src: 'assets/heroes/hero-matterhorn.jpg' },
-        { key: 'lofoten',         src: 'assets/heroes/hero-lofoten.jpg' },
-        { key: 'sonnenuntergang', src: 'assets/heroes/hero-sonnenuntergang.jpg' },
-        { key: 'gletscherhoehle', src: 'assets/heroes/hero-gletscherhoehle.jpg' }
+        { key: 'matterhorn',      src: 'assets/heroes/hero-matterhorn.webp' },
+        { key: 'lofoten',         src: 'assets/heroes/hero-lofoten.webp' },
+        { key: 'sonnenuntergang', src: 'assets/heroes/hero-sonnenuntergang.webp' },
+        { key: 'gletscherhoehle', src: 'assets/heroes/hero-gletscherhoehle.webp' }
       ];
       var pick = heroes[Math.floor(Math.random() * heroes.length)];
       var img = document.getElementById('heroImg');
@@ -853,7 +853,7 @@
 <!-- Über mich -->
 <section id="about">
   <div class="about-img reveal">
-    <img src="assets/about.jpg" alt="Sunshine Peace Fotograf"/>
+    <img src="assets/about.webp" alt="Sunshine Peace Fotograf" loading="lazy" decoding="async"/>
     <div class="about-img-overlay"></div>
     <div class="about-tag" data-i18n="about.tag">📍 Goldiwil · 658 m ü. M.</div>
   </div>
@@ -1237,7 +1237,7 @@ function renderCards(filter) {
     card.className = 'photo-card';
     const titleLoc = tPhotoTitle(p);
     const catLoc = tPhotoCat(p.category);
-    card.innerHTML = `<img src="${p.image}" alt="${titleLoc}" loading="lazy"/>
+    card.innerHTML = `<img src="${p.image}" alt="${titleLoc}" loading="lazy" decoding="async"/>
       <div class="photo-overlay">
         <div class="photo-title">${titleLoc}</div>
         <div class="photo-cat">${catLoc}</div>
