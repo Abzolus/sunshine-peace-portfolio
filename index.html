@@ -559,6 +559,32 @@
     }
     .lightbox-nav button:hover { background: rgba(168,191,158,.2); }
 
+    /* ── Reel / Bewegtbild ── */
+    #reel {
+      background: var(--pine);
+      padding: 7rem 2rem 4rem;
+    }
+    .reel-inner {
+      max-width: 1100px; margin: 0 auto;
+    }
+    .reel-header {
+      margin-bottom: 3rem;
+    }
+    .reel-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(168,191,158,.15);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,.5);
+    }
+    .reel-frame iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; border: 0;
+    }
+
     /* ── Kontakt ── */
     #contact {
       background: var(--pine);
@@ -757,6 +783,8 @@
       .stat-label { font-size: .58rem; }
       .about-content { padding: 3rem 1.5rem !important; }
       #contact { padding: 5rem 1.5rem 4rem; }
+      #reel { padding: 5rem 1rem 3rem; }
+      .reel-header { margin-bottom: 2rem; }
       .contact-form { gap: 1.5rem; }
       .about-tag { top: 1rem; left: 1rem; font-size: .55rem; }
       #portfolio { padding: 4rem 1rem; }
@@ -952,6 +980,29 @@
   </div>
 </div>
 
+<!-- Reel / Bewegtbild -->
+<section id="reel">
+  <div class="reel-inner reveal">
+    <div class="reel-header">
+      <p class="section-eyebrow" data-i18n="reel.eyebrow">Story</p>
+      <h2 class="section-title" data-i18n-html="reel.title">Im <em>Bewegtbild</em></h2>
+    </div>
+    <!-- youtube-nocookie.com setzt erst Tracking-Cookies, wenn der Nutzer
+         tatsächlich auf Play klickt. loading="lazy" verschiebt das Laden
+         des iframes, bis das Video in den Viewport kommt. rel=0 begrenzt
+         „verwandte Videos" am Ende auf Sunshine-Peace's eigenen Kanal. -->
+    <div class="reel-frame">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/PpoOdNzutY8?rel=0"
+        title="Sunshine Peace — Bewegtbild"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </div>
+</section>
+
 <!-- Kontakt -->
 <section id="contact">
   <div class="contact-inner reveal">
@@ -1028,6 +1079,8 @@ const translations = {
     'nav.portfolio': 'Portfolio',
     'nav.contact': 'Kontakt',
     'nav.location': '📍 Thun, CH',
+    'reel.eyebrow': 'Story',
+    'reel.title': 'Im <em>Bewegtbild</em>',
     'hero.title': 'Licht fangen.<br><em>Momente bewahren.</em>',
     'hero.sub': 'Unterwegs mit Kamera und Camper — von den Gletschern des Berner Oberlandes bis zu den stillen Wäldern rund um den Thunersee.',
     'hero.cta1': 'Portfolio ansehen',
@@ -1088,6 +1141,8 @@ const translations = {
     'nav.portfolio': 'ポートフォリオ',
     'nav.contact': 'お問い合わせ',
     'nav.location': '📍 トゥーン、スイス',
+    'reel.eyebrow': 'ストーリー',
+    'reel.title': '<em>映像</em>で',
     'hero.title': '光を捉え。<br><em>瞬間を残す。</em>',
     'hero.sub': 'カメラとキャンパーと共に旅をして — ベルナーオーバーラントの氷河から、トゥーン湖周辺の静かな森まで。',
     'hero.cta1': 'ポートフォリオを見る',
