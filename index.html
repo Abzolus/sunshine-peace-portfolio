@@ -61,9 +61,10 @@
       position: fixed; top: 0; width: 100%; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.2rem 3.5rem;
-      background: rgba(29,40,32,0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(168,191,158,0.15);
+      background: rgb(29,40,32);
+      /* keine durchgehende Border-Bottom — würde die Logo-Ausbuchtung zerschneiden */
+      /* keine Transparenz/Backdrop-Filter — sonst stapelt sich der Effekt
+         in der Überlappungs­zone mit der Logo-Ausbuchtung (würde dunkler wirken) */
     }
     .nav-brand {
       display: flex;
@@ -82,6 +83,39 @@
     .nav-logo {
       display: flex; flex-direction: column; line-height: 1;
       text-decoration: none;
+      position: relative;
+      z-index: 2;
+    }
+    /* Variante C — Bar schwillt unter dem Logo aus.
+       Das Pseudo-Element ::before zeichnet einen Kreis in derselben Farbe
+       wie die Bar; obere Hälfte verschmilzt mit der Bar, untere Hälfte
+       hängt darunter. So wirkt es, als hätte die Bar eine kreisförmige
+       Ausbuchtung, in der das Logo sitzt. */
+    .nav-logo::before {
+      content: "";
+      position: absolute;
+      width: 138px;
+      height: 138px;
+      left: 50%;
+      top: calc(50% + 22px);
+      transform: translate(-50%, -50%);
+      background: rgb(29,40,32);
+      border-radius: 50%;
+      z-index: -1;
+      /* identische Vollfarbe wie die Bar — keine Transparenz, kein Filter,
+         damit garantiert kein Stapel-Effekt entsteht und Bar+Ausbuchtung
+         als eine Fläche wirken */
+    }
+    .nav-logo img {
+      height: 110px;
+      width: auto;
+      display: block;
+      margin: -10px 0 -50px;
+      position: relative;
+      transition: transform .35s ease, opacity .25s ease;
+    }
+    .nav-logo:hover img {
+      opacity: .85;
     }
     .logo-sun {
       font-size: 1.05rem;
@@ -650,7 +684,8 @@
         padding: .7rem 1.25rem;
         gap: .5rem;
       }
-      .nav-logo img { height: 48px !important; }
+      .nav-logo img { height: 76px !important; margin: -4px 0 -28px !important; }
+      .nav-logo::before { width: 96px; height: 96px; top: calc(50% + 12px); }
       .nav-toggle { display: flex; }
       .nav-links {
         display: none;
@@ -703,7 +738,8 @@
       nav { padding: .6rem 1rem; }
       .nav-brand { gap: .7rem; }
       .nav-url { display: none; }
-      .nav-logo img { height: 42px !important; }
+      .nav-logo img { height: 60px !important; margin: -2px 0 -18px !important; }
+      .nav-logo::before { width: 76px; height: 76px; top: calc(50% + 8px); }
       .hero-content { padding: 0 1.5rem 4rem; }
       .hero-motion { left: 1.5rem; bottom: 1.2rem; padding: .35rem .7rem .35rem .5rem; font-size: .54rem; }
       .hero-badge { font-size: .56rem; padding: .3rem .8rem; margin-bottom: 1.4rem; }
@@ -743,7 +779,7 @@
 <!-- Nav -->
 <nav>
   <div class="nav-brand">
-    <a class="nav-logo" href="#"><img src="assets/logo.png" alt="Sunshine Peace" style="height:72px;width:auto;"/></a>
+    <a class="nav-logo" href="#"><img src="assets/logo.png" alt="Sunshine Peace"/></a>
     <span class="nav-url">sunshine-peace.com</span>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks">
