@@ -241,6 +241,7 @@
       min-height: 100vh;
       position: relative;
       display: flex; align-items: flex-end;
+      justify-content: flex-end;
       overflow: hidden;
     }
     .hero-bg {
@@ -316,6 +317,7 @@
       position: relative; z-index: 2;
       padding: 0 5rem 4rem;
       max-width: 800px;
+      text-align: right;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: .6rem;
@@ -343,10 +345,12 @@
       margin-top: 1.8rem; font-size: 1rem;
       line-height: 1.75; color: var(--sage);
       max-width: 42ch;
+      margin-left: auto;     /* schiebt den 42ch-Block nach rechts */
       opacity: 0; animation: fadeUp .9s .75s forwards;
     }
     .hero-actions {
       display: flex; gap: 1.2rem; margin-top: 3rem; flex-wrap: wrap;
+      justify-content: flex-end;
       opacity: 0; animation: fadeUp .9s 1s forwards;
     }
     .btn-primary {
@@ -367,7 +371,9 @@
     }
     .btn-outline:hover { border-color: var(--sage); color: var(--snow); }
     .hero-scroll {
-      position: absolute; bottom: 2.5rem; right: 5rem; z-index: 2;
+      /* Wandert auf die linke Seite, weil rechts jetzt der Text/Buttons sitzen.
+         Stapelt sich oberhalb des hero-motion Toggles (der bei bottom: 2.5rem; left: 5rem liegt). */
+      position: absolute; bottom: 6.5rem; left: 5rem; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: .5rem;
       font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
       color: var(--sage); opacity: .4;
