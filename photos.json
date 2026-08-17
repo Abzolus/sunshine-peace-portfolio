@@ -173,6 +173,12 @@
       "image": "/photos/dsc08117-2.jpg",
       "title_de": "Kleiner",
       "date": "2026-08-17"
+    },
+    {
+      "category": "Natur",
+      "image": "/photos/dsc08117.jpg",
+      "date": "2026-08-17",
+      "title_de": "Großer"
     }
   ]
 }
