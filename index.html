@@ -28,8 +28,12 @@
   <meta name="twitter:image" content="https://sunshine-peace.com/assets/og-image.jpg"/>
   <meta name="twitter:image:alt" content="Matterhorn mit Riffelsee, Schweizer Alpen"/>
 
-  <!-- Favicon (nutzt das Logo, falls Browser PNG akzeptieren — sonst stillen Fallback) -->
-  <link rel="icon" type="image/png" href="assets/logo.png"/>
+  <!-- Favicons: mehrere Formate/Größen, damit Google & Browser das Icon zuverlässig erkennen -->
+  <link rel="icon" href="/favicon.ico" sizes="any"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"/>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
@@ -616,18 +620,44 @@
     }
     .field input,
     .field textarea {
-      background: transparent; border: none;
-      border-bottom: 1px solid rgba(168,191,158,.2);
-      padding: .6rem 0; font-family: inherit; font-size: 1rem;
-      color: var(--snow); transition: border-color .25s;
+      background: rgba(168,191,158,.08);
+      border: 1px solid rgba(168,191,158,.2);
+      border-radius: 4px;
+      padding: .7rem .9rem; font-family: inherit; font-size: 1rem;
+      color: var(--snow); transition: background .25s, border-color .25s;
       resize: vertical;
     }
     .field input:focus,
     .field textarea:focus {
-      outline: none; border-bottom-color: var(--sun);
+      outline: none;
+      background: rgba(168,191,158,.12);
+      border-color: var(--sun);
     }
-    .field textarea { min-height: 120px; line-height: 1.6; }
+    .field textarea {
+      min-height: 120px; line-height: 1.6;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: rgba(232,237,229,.32); }
     .field-required { color: var(--sun); margin-left: .25rem; opacity: .7; }
+    .field-fieldset { border: none; padding: 0; margin: 0; }
+    .field-fieldset legend {
+      font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(168,191,158,.6); padding: 0; margin-bottom: .3rem; width: 100%;
+    }
+    .option-group { display: flex; flex-direction: column; gap: .6rem; margin-top: .4rem; }
+    .option-item {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .88rem; line-height: 1.4; color: var(--snow); cursor: pointer;
+    }
+    .option-item input[type="checkbox"],
+    .option-item input[type="radio"] {
+      accent-color: var(--sun); width: 14px; height: 14px; flex-shrink: 0;
+      margin: 0; cursor: pointer;
+    }
+    .field-error {
+      display: none; font-size: .78rem; color: #e8746a; margin-top: .5rem;
+    }
+    .field-error.show { display: block; }
     /* Honeypot — niemals sichtbar, fängt Bots */
     .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .contact-actions {
@@ -868,11 +898,6 @@
   </script>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1 class="hero-title" data-i18n-html="hero.title">
-      Licht fangen.<br>
-      <em>Momente bewahren.</em>
-    </h1>
-    <p class="hero-sub" data-i18n="hero.sub">Unterwegs mit Kamera und Camper — von den Gletschern des Berner Oberlandes bis zu den stillen Wäldern rund um den Thunersee.</p>
     <div class="hero-actions">
       <a href="#portfolio" class="btn-primary" data-i18n="hero.cta1">Portfolio ansehen</a>
       <a href="#about" class="btn-outline" data-i18n="hero.cta2">Meine Geschichte</a>
@@ -929,8 +954,9 @@
   <div class="about-content reveal">
     <p class="section-eyebrow" data-i18n="about.eyebrow">Über mich</p>
     <h2 class="section-title" data-i18n-html="about.title">Hinter der<br><em>Kamera</em></h2>
-    <p class="about-text" data-i18n="about.text1">Ich bin Kohei Matsumoto — freier Fotograf aus Japan, der sein Zuhause im kleinen Dorf Goldiwil hoch über dem Thunersee im Berner Oberland gefunden hat. Die Alpen sind meine grösste Inspiration.</p>
-    <p class="about-text" data-i18n="about.text2">Mit meinem Camper bin ich ständig unterwegs — immer auf der Suche nach dem perfekten Licht, dem unerwarteten Moment, dem Bild, das bleibt. Ob Gletscherhöhlen, Kirschblüten oder der Sonnenuntergang über dem Thunersee.</p>
+    <p class="about-text" data-i18n="about.text1">2020 veränderte sich mein Leben schlagartig: Nach schweren Verbrennungen, Wochen im Koma und einem langen Weg der Besserung habe ich gelernt, die Schönheit des gegenwärtigen Moments und das Geschenk des Lebens völlig neu zu begreifen.</p>
+    <p class="about-text" data-i18n="about.text2">Aus dieser tiefen Krise heraus betrachte ich heute die Welt. Als Videograf und Fotograf fange ich das Licht ein, das man erst sieht, wenn man die Dunkelheit durchschritten hat. Menschen zu inspirieren und ihnen Zuversicht zu schenken, ist das Herzstück meiner Kunst.</p>
+    <p class="about-text" data-i18n="about.text3">Die Liebe und Energie, die mir damals geschenkt wurde, fliesst nun durch meine Linse zurück in die Welt. Es ist ein Kreislauf des Lichts, den ich nach der Bedeutung meines Namens „Sunshine Peace" nenne.</p>
     <div class="about-tags">
       <span class="tag" data-i18n="about.tag1">🏔️ Berner Oberland</span>
       <span class="tag" data-i18n="about.tag2">🏕️ Camping</span>
@@ -1007,14 +1033,18 @@
 <section id="contact">
   <div class="contact-inner reveal">
     <p class="section-eyebrow" data-i18n="contact.eyebrow">Lass uns reden</p>
-    <h2 class="section-title" data-i18n-html="contact.title">Hallo<br><em>sagen</em></h2>
-    <p class="contact-intro" data-i18n="contact.intro">Buchungsanfrage, Print-Bestellung oder einfach nur eine Nachricht? Schreib mir — ich melde mich innerhalb von 48 Stunden.</p>
+    <h2 class="section-title" data-i18n="contact.title">Angebotsanfrage & Kontakt</h2>
+    <p class="contact-intro" data-i18n="contact.intro">Buchungsanfrage, Preisberechnung oder einfach nur eine Nachricht? Wähle deine Wünsche aus – ich melde mich innerhalb von 48 Stunden mit einem passenden Angebot.</p>
     <a class="contact-mailto" href="mailto:kontakt@sunshine-peace.com" data-i18n="contact.mailto">Direkt: kontakt@sunshine-peace.com</a>
 
     <!-- Netlify Forms: data-netlify="true" + name="contact" reichen aus,
          damit Netlify das Formular beim Deploy registriert. Einsendungen
          landen im Netlify-Dashboard und können dort als E-Mail-Notification
-         eingerichtet werden. -->
+         eingerichtet werden. Die Checkbox-/Radio-"value"-Attribute bleiben
+         bewusst als kurze deutsche Kennungen stehen (unabhängig von der
+         gewählten Sprache), damit die Einsendungen im Dashboard einheitlich
+         und eindeutig auswertbar sind — sichtbar für Besucher ist immer nur
+         das übersetzte Label. -->
     <form class="contact-form" name="contact" id="contactForm" method="POST"
           data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact"/>
@@ -1022,21 +1052,76 @@
 
       <div class="field">
         <label for="cf-name"><span data-i18n="contact.field.name">Name</span><span class="field-required">*</span></label>
-        <input type="text" id="cf-name" name="name" required autocomplete="name"/>
+        <input type="text" id="cf-name" name="name" required autocomplete="name" data-i18n-placeholder="contact.field.name.placeholder" placeholder="Max Mustermann"/>
       </div>
 
       <div class="field">
         <label for="cf-email"><span data-i18n="contact.field.email">E-Mail</span><span class="field-required">*</span></label>
-        <input type="email" id="cf-email" name="email" required autocomplete="email"/>
+        <input type="email" id="cf-email" name="email" required autocomplete="email" data-i18n-placeholder="contact.field.email.placeholder" placeholder="example@email.com"/>
       </div>
 
+      <fieldset class="field field-fieldset" id="cf-service-group">
+        <legend><span data-i18n="contact.field.service">Gewünschter Service (Mehrfachauswahl möglich)</span><span class="field-required">*</span></legend>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="checkbox" name="service" value="Portraet-Fotoshooting" class="cf-service"/>
+            <span data-i18n="contact.field.service.opt1">Porträt-Fotoshooting</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="service" value="Portraet-Videoshooting" class="cf-service"/>
+            <span data-i18n="contact.field.service.opt2">Porträt-Videoshooting</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="service" value="Event-Fotografie" class="cf-service"/>
+            <span data-i18n="contact.field.service.opt3">Event-Fotografie</span>
+          </label>
+          <label class="option-item">
+            <input type="checkbox" name="service" value="Event-Videografie" class="cf-service"/>
+            <span data-i18n="contact.field.service.opt4">Event-Videografie</span>
+          </label>
+        </div>
+        <p class="field-error" id="cfServiceError" data-i18n="contact.field.service.error">Bitte wähle mindestens einen Service aus.</p>
+      </fieldset>
+
+      <fieldset class="field field-fieldset">
+        <legend data-i18n="contact.field.timeframe">Gewünschter Zeitraum (Optional)</legend>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="radio" name="timeframe" value="Innerhalb-1-Monat"/>
+            <span data-i18n="contact.field.timeframe.opt1">Innerhalb von 1 Monat</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="timeframe" value="1-bis-3-Monate"/>
+            <span data-i18n="contact.field.timeframe.opt2">In 1 bis 3 Monaten</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="timeframe" value="Noch-nicht-festgelegt"/>
+            <span data-i18n="contact.field.timeframe.opt3">Noch nicht festgelegt</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field field-fieldset">
+        <legend data-i18n="contact.field.purpose">Verwendungszweck (Optional)</legend>
+        <div class="option-group">
+          <label class="option-item">
+            <input type="radio" name="purpose" value="Privat"/>
+            <span data-i18n="contact.field.purpose.opt1">Privat (Porträt, Erinnerung, Social Media etc.)</span>
+          </label>
+          <label class="option-item">
+            <input type="radio" name="purpose" value="Kommerziell-Business"/>
+            <span data-i18n="contact.field.purpose.opt2">Kommerziell / Business (Unternehmen, PR, Events etc.)</span>
+          </label>
+        </div>
+      </fieldset>
+
       <div class="field">
-        <label for="cf-message"><span data-i18n="contact.field.message">Nachricht</span><span class="field-required">*</span></label>
-        <textarea id="cf-message" name="message" required rows="5"></textarea>
+        <label for="cf-message"><span data-i18n="contact.field.message">Nachricht / Wünsche (Optional)</span></label>
+        <textarea id="cf-message" name="message" rows="5" data-i18n-placeholder="contact.field.message.placeholder" placeholder="Details zum Ort, besonderen Wünschen oder Vorstellungen..."></textarea>
       </div>
 
       <div class="contact-actions">
-        <button type="submit" class="btn-submit" data-i18n="contact.submit">Senden</button>
+        <button type="submit" class="btn-submit" data-i18n="contact.submit">Angebot & Beratung anfordern</button>
       </div>
 
       <div class="form-status success" id="cfSuccess" data-i18n="contact.success" role="status">Danke! Deine Nachricht ist angekommen — ich melde mich innerhalb von 48 Stunden.</div>
@@ -1100,8 +1185,9 @@ const translations = {
     'about.eyebrow': 'Über mich',
     'about.title': 'Hinter der<br><em>Kamera</em>',
     'about.tag': '📍 Goldiwil · 658 m ü. M.',
-    'about.text1': 'Ich bin Kohei Matsumoto — freier Fotograf aus Japan, der sein Zuhause im kleinen Dorf Goldiwil hoch über dem Thunersee im Berner Oberland gefunden hat. Die Alpen sind meine grösste Inspiration.',
-    'about.text2': 'Mit meinem Camper bin ich ständig unterwegs — immer auf der Suche nach dem perfekten Licht, dem unerwarteten Moment, dem Bild, das bleibt. Ob Gletscherhöhlen, Kirschblüten oder der Sonnenuntergang über dem Thunersee.',
+    'about.text1': '2020 veränderte sich mein Leben schlagartig: Nach schweren Verbrennungen, Wochen im Koma und einem langen Weg der Besserung habe ich gelernt, die Schönheit des gegenwärtigen Moments und das Geschenk des Lebens völlig neu zu begreifen.',
+    'about.text2': 'Aus dieser tiefen Krise heraus betrachte ich heute die Welt. Als Videograf und Fotograf fange ich das Licht ein, das man erst sieht, wenn man die Dunkelheit durchschritten hat. Menschen zu inspirieren und ihnen Zuversicht zu schenken, ist das Herzstück meiner Kunst.',
+    'about.text3': 'Die Liebe und Energie, die mir damals geschenkt wurde, fliesst nun durch meine Linse zurück in die Welt. Es ist ein Kreislauf des Lichts, den ich nach der Bedeutung meines Namens „Sunshine Peace" nenne.',
     'about.tag1': '🏔️ Berner Oberland',
     'about.tag2': '🏕️ Camping',
     'about.tag3': '📷 Naturfotografie',
@@ -1120,13 +1206,29 @@ const translations = {
     'lb.prev': '← Zurück',
     'lb.next': 'Weiter →',
     'contact.eyebrow': 'Lass uns reden',
-    'contact.title':   'Hallo<br><em>sagen</em>',
-    'contact.intro':   'Buchungsanfrage, Print-Bestellung oder einfach nur eine Nachricht? Schreib mir — ich melde mich innerhalb von 48 Stunden.',
+    'contact.title':   'Angebotsanfrage & Kontakt',
+    'contact.intro':   'Buchungsanfrage, Preisberechnung oder einfach nur eine Nachricht? Wähle deine Wünsche aus – ich melde mich innerhalb von 48 Stunden mit einem passenden Angebot.',
     'contact.mailto':  'Direkt: kontakt@sunshine-peace.com',
     'contact.field.name':    'Name',
+    'contact.field.name.placeholder': 'Max Mustermann',
     'contact.field.email':   'E-Mail',
-    'contact.field.message': 'Nachricht',
-    'contact.submit':  'Senden',
+    'contact.field.email.placeholder': 'example@email.com',
+    'contact.field.service': 'Gewünschter Service (Mehrfachauswahl möglich)',
+    'contact.field.service.opt1': 'Porträt-Fotoshooting',
+    'contact.field.service.opt2': 'Porträt-Videoshooting',
+    'contact.field.service.opt3': 'Event-Fotografie',
+    'contact.field.service.opt4': 'Event-Videografie',
+    'contact.field.service.error': 'Bitte wähle mindestens einen Service aus.',
+    'contact.field.timeframe': 'Gewünschter Zeitraum (Optional)',
+    'contact.field.timeframe.opt1': 'Innerhalb von 1 Monat',
+    'contact.field.timeframe.opt2': 'In 1 bis 3 Monaten',
+    'contact.field.timeframe.opt3': 'Noch nicht festgelegt',
+    'contact.field.purpose': 'Verwendungszweck (Optional)',
+    'contact.field.purpose.opt1': 'Privat (Porträt, Erinnerung, Social Media etc.)',
+    'contact.field.purpose.opt2': 'Kommerziell / Business (Unternehmen, PR, Events etc.)',
+    'contact.field.message': 'Nachricht / Wünsche (Optional)',
+    'contact.field.message.placeholder': 'Details zum Ort, besonderen Wünschen oder Vorstellungen...',
+    'contact.submit':  'Angebot & Beratung anfordern',
     'contact.sending': 'Wird gesendet …',
     'contact.success': 'Danke! Deine Nachricht ist angekommen — ich melde mich innerhalb von 48 Stunden.',
     'contact.error':   'Hoppla, da ist etwas schiefgelaufen. Bitte versuche es nochmal oder schreib direkt an kontakt@sunshine-peace.com.',
@@ -1162,8 +1264,9 @@ const translations = {
     'about.eyebrow': '自己紹介',
     'about.title': 'カメラの<br><em>向こう側</em>',
     'about.tag': '📍 ゴルディウィル · 標高658m',
-    'about.text1': '私はコウヘイ・マツモト — 日本出身のフリーランス写真家で、ベルナーオーバーラントのトゥーン湖を見下ろす小さな村、ゴルディウィルに故郷を見つけました。アルプスは私の最大のインスピレーションです。',
-    'about.text2': 'キャンパーで常に旅をしながら — 完璧な光、予期せぬ瞬間、心に残る一枚を追い求めています。氷河の洞窟、桜、あるいはトゥーン湖に沈む夕日まで。',
+    'about.text1': '2020年、私は重度の火傷を負い、昏睡状態と長いリハビリを経験しました。その生死を彷徨う過酷な過程のなかで、「今この瞬間の美しさ」と「生きることの価値」を誰よりも強く実感しました。',
+    'about.text2': '現在は、逆境を越えたからこそ見える光や世界を、ビデオグラファー・フォトグラファーとして写真や映像に収めています。見る人に希望や前向きなきっかけを届けることが、私の表現の普遍的なテーマです。',
+    'about.text3': 'これまで受け取ってきた温かい応援や想いを、今度は自分がカメラを通して誰かへ返していく――。その美しい循環を、私の名前の意味(光・平和・太陽)にかけて「Sunshine Peace」という形で表現しています。',
     'about.tag1': '🏔️ ベルナーオーバーラント',
     'about.tag2': '🏕️ キャンプ',
     'about.tag3': '📷 自然写真',
@@ -1181,14 +1284,30 @@ const translations = {
     'filter.Editorial': 'エディトリアル',
     'lb.prev': '← 戻る',
     'lb.next': '次へ →',
-    'contact.eyebrow': '話しましょう',
-    'contact.title':   'こんにちはと<br><em>言って</em>',
-    'contact.intro':   '撮影のご依頼、プリントのご注文、あるいは単なるメッセージでも — 48時間以内にお返事いたします。',
+    'contact.eyebrow': 'お問い合わせ',
+    'contact.title':   'お気軽にご相談ください',
+    'contact.intro':   'お見積りのご相談、撮影予約、その他ご質問はこちらから。ご希望の項目にチェックを入れて送信していただければ、48時間以内に最適なプランをご提案いたします。',
     'contact.mailto':  '直接メール: kontakt@sunshine-peace.com',
     'contact.field.name':    'お名前',
+    'contact.field.name.placeholder': '例：山田 太郎',
     'contact.field.email':   'メールアドレス',
-    'contact.field.message': 'メッセージ',
-    'contact.submit':  '送信',
+    'contact.field.email.placeholder': 'example@email.com',
+    'contact.field.service': 'ご希望のサービス（複数選択可）',
+    'contact.field.service.opt1': 'ポートレート写真撮影',
+    'contact.field.service.opt2': 'ポートレート動画撮影',
+    'contact.field.service.opt3': 'イベント写真撮影',
+    'contact.field.service.opt4': 'イベント動画撮影',
+    'contact.field.service.error': '少なくとも1つのサービスを選択してください。',
+    'contact.field.timeframe': 'ご希望の時期・納期（任意）',
+    'contact.field.timeframe.opt1': '1ヶ月以内',
+    'contact.field.timeframe.opt2': '1〜3ヶ月以内',
+    'contact.field.timeframe.opt3': '未定・3ヶ月以上先',
+    'contact.field.purpose': 'ご利用目的（任意）',
+    'contact.field.purpose.opt1': '個人利用（記念撮影、SNS、ポートレートなど）',
+    'contact.field.purpose.opt2': '商用・ビジネス利用（企業PR、店舗、イベント主催など）',
+    'contact.field.message': 'メッセージ・ご要望（任意）',
+    'contact.field.message.placeholder': '撮影希望場所（Goldiwil周辺、屋外など）や具体的なイメージ、ご質問などをご自由にご記入ください。',
+    'contact.submit':  '見積もり・相談を送る',
     'contact.sending': '送信中 …',
     'contact.success': 'ありがとうございます！メッセージを受け取りました。48時間以内にご連絡いたします。',
     'contact.error':   '申し訳ありません、何か問題が発生しました。もう一度お試しいただくか、kontakt@sunshine-peace.com に直接ご連絡ください。',
@@ -1226,6 +1345,10 @@ function applyLang(lang) {
   document.querySelectorAll('[data-i18n-title]').forEach(el => {
     const key = el.getAttribute('data-i18n-title');
     if (dict[key] !== undefined) el.setAttribute('title', dict[key]);
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
   });
   document.querySelectorAll('.flag-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -1391,13 +1514,29 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 (function initContactForm(){
   var form = document.getElementById('contactForm');
   if (!form) return;
-  var btn      = form.querySelector('.btn-submit');
-  var okBox    = document.getElementById('cfSuccess');
-  var errBox   = document.getElementById('cfError');
+  var btn         = form.querySelector('.btn-submit');
+  var okBox       = document.getElementById('cfSuccess');
+  var errBox      = document.getElementById('cfError');
+  var serviceErr  = document.getElementById('cfServiceError');
+  var serviceBoxes = form.querySelectorAll('.cf-service');
+  serviceBoxes.forEach(function(cb){
+    cb.addEventListener('change', function(){
+      if (Array.prototype.some.call(serviceBoxes, function(c){ return c.checked; })) {
+        serviceErr.classList.remove('show');
+      }
+    });
+  });
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     okBox.classList.remove('show');
     errBox.classList.remove('show');
+    var anyServiceChecked = Array.prototype.some.call(serviceBoxes, function(c){ return c.checked; });
+    if (!anyServiceChecked) {
+      serviceErr.classList.add('show');
+      serviceBoxes[0].focus();
+      return;
+    }
+    serviceErr.classList.remove('show');
     var dict = translations[currentLang] || translations.de;
     var origLabel = btn.textContent;
     btn.disabled = true;
